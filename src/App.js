@@ -13,13 +13,12 @@ class App extends Component {
 
   onSubmit = () => {
 
-    var b = {
+    var test = {
       title: this.refs.title.value,
       work: this.refs.content.value
     };
   let newWord = this.state.works;
   newWord.push(b);
-
     this.setState({ works: newWord });
   }
 
