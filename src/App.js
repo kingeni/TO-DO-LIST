@@ -19,7 +19,7 @@ class App extends Component {
     };
   let newWord = this.state.works;
   newWord.push(b);
-    console.log(typeof newWord);
+
     this.setState({ works: newWord });
   }
 
