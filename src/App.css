@@ -36,6 +36,18 @@
   background-color: #333;
   overflow: hidden;
 }
+.list {
+    border-collapse: collapse;
+    width: 40%;
+    
+}
+
+.list th {
+    padding: 8px;
+    text-align: center;
+    border-bottom: 1px solid #ddd;
+    border-top: 1px solid #ddd;
+}
 
 /* Style the links inside the navigation bar */
 .topnav a {

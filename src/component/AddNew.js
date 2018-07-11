@@ -4,12 +4,7 @@ import React, { Component } from 'react';
 import '../App.css';
 
 class AddNew extends Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            works: []
-        };
-    }
+   
     onHandle = (event) => {
         event.preventDefault();
         var work = {
@@ -26,9 +21,10 @@ class AddNew extends Component {
         
     }
     render() {
+        const { onHandle } = this.props;
         return (
             <div>
-                <form onSubmit={(event)=> this.onHandle(event)} className="App-title" >
+                <form onSubmit= {onHandle} className="App-title" >
                     <table>
                         <tbody>
                             <tr>
