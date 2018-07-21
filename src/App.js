@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import './App.css';
 import AddNew from './component/AddNew';
 import NavBar from './component/List';
-
+import Modal from './component/Modal';
 
 
 class App extends Component {

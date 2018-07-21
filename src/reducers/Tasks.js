@@ -17,12 +17,12 @@ var myReducers = (state = initialState, action) => {
         case types.LIST_ALL:
             return state;
         case types.ADD_TASK:
-            state.push(action.works);
-            return state;
+           
+            return [...state, action.works];
         case types.DELETE_TASK:
             state.splice(action.id ,1);
             console.log(state);
-            return state;   
+            return [...state];   
         default:
             return state;
     }
