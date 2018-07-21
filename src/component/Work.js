@@ -1,9 +1,10 @@
 import React, { Component } from 'react';
-
+import { connect } from 'react-redux';
+import * as action from '../actions/index';
 class Work extends Component{
     handleDel =() => {
-       const {index, onDelete} = this.props;
-        onDelete(index);
+       const {index} = this.props;
+       this.props.onDelete(index);
     }
     onHandle=()=>{
         console.log("asdasd");
@@ -27,5 +28,16 @@ class Work extends Component{
     }
 
 }
+const MapStateToProps = (state) =>{
+    return {
 
-export default Work;
+    }
+};
+const mapDispatchToProps = (dispatch , props) =>{
+    return {
+        onDelete : (id) => {
+            dispatch(action.deleteTask(id));
+            }
+        }
+    };
+export default connect(MapStateToProps,mapDispatchToProps ) (Work);

@@ -1,6 +1,7 @@
 
 import React, { Component } from 'react';
-
+import {connect} from 'react-redux';
+import * as action from '../actions/index';
 import '../App.css';
 
 class AddNew extends Component {
@@ -21,7 +22,7 @@ class AddNew extends Component {
         let target = event.target;
         let name = target.name;
         let value = target.value;
-        let { check } = this.state;
+       
 
         if (value === '-1') value = true;
         if (value === '-2') value = false;
@@ -32,16 +33,16 @@ class AddNew extends Component {
   
 
     onSubmit = (event) => {
-        const { onHandle } = this.props;
+        event.preventDefault();
+        //const { onHandle } = this.props;
         const { works } = this.state;
-        onHandle(event, works);
+        //onHandle(event, works);
+        this.props.onAddTask(works);
         window.alert("Add new successfully");
     }
 
   
     render() {
-
-
         return (
             <div>
                 <form onSubmit={this.onSubmit} className="App-title" >
@@ -75,4 +76,16 @@ class AddNew extends Component {
     }
 
 }
-export default AddNew;
+const mapStateToProps = state => {
+        return {
+
+        };
+};
+const mapDispatchToProps =  (dispatch, props)=>{
+ return {
+        onAddTask : (task) => {
+            dispatch(action.addTask(task));
+     }
+ }    
+}
+export default connect(mapStateToProps,mapDispatchToProps ) (AddNew);

@@ -1,2 +1,0 @@
-export const TOGGLE_CHANGE = 'TOGGLE_CHANGE';
-export const TOGGLE_SORT = 'TOGGLE_SORT';

@@ -1,17 +1,13 @@
 import React, { Component } from 'react';
-import { createStore } from 'redux';
+
 import '../App.css';
 import Work from './Work';
+import { connect } from 'react-redux';
 
 class NavBar extends Component {
-
-
-
     render() {
-        let { listItem, onDelete } = this.props;
-        
-        const map1 = listItem.map((arr, index) => 
-           <Work item={arr} index={index} key={index} onDelete={onDelete}/>
+        const map1 = this.props.works.map((arr, index) => 
+           <Work item={arr} index={index} key={index} />
         );
         console.log(map1);
         return (
@@ -36,4 +32,12 @@ class NavBar extends Component {
     }
 
 }
-export default NavBar;
+const mapStateToProps = (state)=> {
+    return {
+        works : state.works
+    }
+
+}
+
+
+export default  connect(mapStateToProps,null) (NavBar);
