@@ -9,7 +9,12 @@ class NavBar extends PureComponent  {
     render() {
         console.log("workds:", this.props.works);
         const map1 = this.props.works.map((arr, index) =>
-            <Work item={arr} index={index} key={index} onDel={this.props.onDelete} onShow={this.props.showOneWorks} />
+        <Work   item={arr}
+                index={index} 
+                key={index} 
+                onDel={this.props.onDelete} 
+                onShow={this.props.showOneWorks}
+                updateWork={this.props.updateWork} />
         );
         return (
             <div>
@@ -46,6 +51,9 @@ const mapDispatchToProps = (dispatch, props) => {
         },
         showOneWorks: (work) => {
             dispatch(action.showOneWork(work));
+        },
+        updateWork: (work, id) => {
+            dispatch(action.updateWork(work, id));
         }
     }
 };

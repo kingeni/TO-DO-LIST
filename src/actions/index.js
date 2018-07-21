@@ -37,3 +37,9 @@ export const updateWork =  (work, id) => {
         id
     }
 };
+export const getIndex =  (id) => {
+    return {
+        type : types.GET_INDEX,
+        id
+    }
+};

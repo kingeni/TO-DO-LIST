@@ -17,16 +17,15 @@ var myReducers = (state = initialState, action) => {
         case types.LIST_ALL:
             return state;
         case types.ADD_TASK:
-            
             return [...state, action.works];
         case types.DELETE_TASK:
-            console.log(state);
-           // let newState = [...state.slice(0,action.id),state.slice(action.id + 1)];
-        //    state.splice(action.id, 1);
-
-            return  [...state.slice(0,action.id),state.slice(action.id + 1)];
+        console.log(action);
+            return  [...state.slice(0,action.id),...state.slice((action.id + 1))];
         case types.UPDATE_TASK:
-            return state;
+            let newState = [...state.slice(0,action.id),action.work ];
+
+            
+            return [...newState, ...state.slice(action.id + 1)];
         default:
             return state;
     }
