@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import './App.css';
 import AddNew from './component/AddNew';
 import NavBar from './component/List';
-import Modal from './component/Modal';
+
 
 
 class App extends Component {
@@ -51,8 +51,10 @@ class App extends Component {
           <a href="" onClick={this.handleNew}>Add New</a>
           <a href="" onClick={this.handleList} >List</a>
         </nav>
+       
         {this.state.components === ''  ? <NavBar /> : this.state.components} 
       </div>);
+      
   }
 }
 

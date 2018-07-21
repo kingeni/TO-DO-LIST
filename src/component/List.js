@@ -1,15 +1,15 @@
-import React, { Component } from 'react';
+import React, { PureComponent  } from 'react';
 
 import '../App.css';
 import Work from './Work';
 import { connect } from 'react-redux';
 import * as action from '../actions/index';
-class NavBar extends Component {
+class NavBar extends PureComponent  {
 
     render() {
-        console.log("workds:",this.props.works);
-        const map1 = this.props.works.map((arr, index) => 
-           <Work item={arr} index={index} key={index} onDel ={this.props.onDelete}  />
+        console.log("workds:", this.props.works);
+        const map1 = this.props.works.map((arr, index) =>
+            <Work item={arr} index={index} key={index} onDel={this.props.onDelete} onShow={this.props.showOneWorks} />
         );
         return (
             <div>
@@ -22,29 +22,32 @@ class NavBar extends Component {
                             <th>STATUS</th>
                             <th>START DAY</th>
                         </tr>
-                        
+
                     </thead>
-                    <tbody> 
-                   {map1}
-                    </tbody> 
+                    <tbody>
+                        {map1}
+                    </tbody>
                 </table>
-               
+
             </div>);
     }
 
 }
-const mapStateToProps = (state)=> {
+const mapStateToProps = (state) => {
     return {
-        works : state.works
+        works: state.works
     }
 
 }
-const mapDispatchToProps = (dispatch , props) =>{
+const mapDispatchToProps = (dispatch, props) => {
     return {
-        onDelete : (id) => {
+        onDelete: (id) => {
             dispatch(action.deleteTask(id));
-            }
+        },
+        showOneWorks: (work) => {
+            dispatch(action.showOneWork(work));
         }
-    };
+    }
+};
 
-export default  connect(mapStateToProps,mapDispatchToProps) (NavBar);
+export default connect(mapStateToProps, mapDispatchToProps)(NavBar);

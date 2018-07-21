@@ -23,3 +23,17 @@ export const changeModal = (status_modal) =>{
         status_modal
     };
 };
+export const showOneWork = (work) =>{
+        return {
+            type : types.SHOW_ONE_TASK,
+            work
+        }
+
+};
+export const updateWork =  (work, id) => {
+    return {
+        type : types.UPDATE_TASK,
+        work,
+        id
+    }
+};

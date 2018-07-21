@@ -11,56 +11,65 @@ class Work extends Component{
     }
    
     openModal=()=> {
-       this.props.onDal(true);
+        const {item, onShow} = this.props;
+       
+       onShow(item);
+        this.props.onDal(true);
       }
-    
-     
     
       closeModal=()=> {
         this.props.onDal(false);
       }
        
       render(){
-        const {item, index} = this.props;
-        console.log("modal:",this.props.item);
-        console.log("modal:",this.props.modalIsOpen);
+        const {item, index,oneWork} = this.props;
         let check = item.status === true ? 'ACTIVE' : 'HIDE';
-        return ( 
-                    <tr   >
+        return (    
+                    <tr>
                     <th>{index+1}</th>
                     <th>{item.name}</th>
                     <th>{item.note}</th>
                     <th>{check}</th>
                     <th>{item.date}</th>
                     <th><button onClick={this.handleDel}>DETELE</button></th>
-                    <th><button onClick={this.onEdit}>EDIT</button></th>
-                    <th><button  onClick={this.openModal} >VIEW</button></th>
+                    <th><button onClick={this.openModal} >VIEW</button></th>
                     <Modal 
-          isOpen={this.props.modalIsOpen.modalIsOpen}
-
-          onRequestClose={this.closeModal}
-           contentLabel="Example Modal"
+                        isOpen={this.props.modalIsOpen.modalIsOpen}
+                        onRequestClose={this.closeModal}
+                      
         >
               <div className="modal-header">
                 <h4 className="modal-title">Work Detail</h4>
                 <button type="button" onClick ={this.closeModal} className="close" data-dismiss="modal">&times;</button>
               </div>
-
+              <form onSubmit={this.submit}>
               <div className="modal-body">
-                <label> </label>  
-                <div   >
-                    <div>{index+1}</div>
-                    <div>{item.name}</div>
-                    <div>{item.note}</div>
-                    <div>{check}</div>
-                    <div>{item.date}</div>
-                    </div>
+            
+                <table border="0">
+                    <tbody>
+                    <tr>
+                        <th>NAME</th>
+                        <th><input type="text" defaultValue={oneWork.name} onChange={this.onSave} /></th>
+                    </tr>
+                    <tr>
+                        <th>Note</th>
+                        <th><input type="text" defaultValue={oneWork.note} onChange={this.onSave} /></th>
+                    </tr>
+                    <tr>
+                        <th>Date</th>
+                        <th><input type="datetime-local" defaultValue={oneWork.date} onChange={this.onSave} /></th>
+                    </tr>
+                    </tbody>
+                </table>
+            
+                
+               
               </div>
-
                 <div className="modal-footer">
+                <button type="submit" className="btn btn-danger">Update</button>
                 <button onClick ={this.closeModal} type="button" className="btn btn-danger">Close</button>
               </div>
-         
+              </form>
         </Modal>
                     </tr>
                     
@@ -71,8 +80,7 @@ class Work extends Component{
 const MapStateToProps = (state) =>{
     return {
         modalIsOpen : state.modalIsOpen,
-        item : state.works
-
+        oneWork: state.work
     }
 };
 const mapDispatchToProps = (dispatch, props)=>{
