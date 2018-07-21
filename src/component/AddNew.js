@@ -4,11 +4,11 @@ import React, { Component } from 'react';
 import '../App.css';
 
 class AddNew extends Component {
-   
-    constructor(props){
+
+    constructor(props) {
         super(props);
-        this.state={
-            check : true,
+        this.state = {
+            check: true,
             works: {
                 name: '',
                 note: '',
@@ -17,57 +17,43 @@ class AddNew extends Component {
             }
         }
     }
-    onSave = (event) =>{
+    onSave = (event) => {
         let target = event.target;
         let name = target.name;
         let value = target.value;
-        let {check} = this.state;
-        
-        if(value === '-1') value = true;
-        if(value === '-2') value = false;
+        let { check } = this.state;
+
+        if (value === '-1') value = true;
+        if (value === '-2') value = false;
         let works = this.state.works;
         works[name] = value;
         this.setState({ works });
     }
-    checkValid = (name, value) => {
-        if(name == 'name' ){
-        let regex = /[a-zA-Z0-9]/g;
-        let check = value.match(regex);
-        console.log("valid:",check);
-        }
-    }
- 
-    onSubmit = (event) =>{
+  
+
+    onSubmit = (event) => {
         const { onHandle } = this.props;
-        const { works} = this.state;
-        let {check} = this.state;
-        if(check){
-            onHandle(event,works);
-        }else {
-            window.alert("Can not submit");
-        } 
-        
-        
+        const { works } = this.state;
+        onHandle(event, works);
+        window.alert("Add new successfully");
     }
-    checkSubmit = () =>{
-        let {check} = this.state;
-        
-    }
+
+  
     render() {
-       
-            
+
+
         return (
             <div>
-                <form onSubmit= {this.onSubmit} className="App-title" >
+                <form onSubmit={this.onSubmit} className="App-title" >
                     <table>
                         <tbody>
                             <tr>
                                 <td>Title</td>
-                                <td><input type="text" name='name' onChange={this.onSave} /></td>
+                                <td><input type="text" required pattern='[a-zA-Z0-9]+' name='name' onChange={this.onSave} /></td>
                             </tr>
                             <tr>
                                 <td>Note</td>
-                                <td><input type="text" name='note'  onChange={this.onSave}/></td>
+                                <td><input type="text" name='note'  onChange={this.onSave} /></td>
                             </tr>
                             <tr>
                                 <td>Start Time </td>
@@ -75,13 +61,13 @@ class AddNew extends Component {
                             </tr>
                             <tr>
                                 <td>Status</td>
-                                <td><input type="radio" name="status" onChange={this.onSave} value='-1'/>ACTIVE
-                                <input type="radio" name="status" onChange={this.onSave} value='-2'/>HIDE</td>
+                                <td><input type="radio" name="status" onChange={this.onSave} value='-1' />ACTIVE
+                                <input type="radio" name="status" onChange={this.onSave} value='-2' />HIDE</td>
                             </tr>
                         </tbody>
                     </table>
-                    <input type="submit" onClick={this.checkSubmit} value="Submit" />&nbsp;
-                    <input type="reset" value="Reset" />
+                    <input type="submit" />&nbsp;
+                    <input type="reset" />
                 </form>
             </div>
 

@@ -35,8 +35,6 @@ class App extends Component {
     let works = this.state.works;
     works.push(newWork);
     this.setState({ works});
-   
-
   }
   handleNew = (event) => {
     event.preventDefault();
@@ -44,18 +42,33 @@ class App extends Component {
     components = <AddNew onHandle={this.onHandle} />;
     this.setState({ components });
   }
+  // componentDidUpdate(){
+  //   this.handleList();
+  // }
+
+  
+  // handleDelete =(id) =>{
+  //   console.log("ID:" ,id);
+  //   let { components ,works} = this.state;
+  //   console.log("APP:",works);
+  //   works.splice(id, 1);
+  //   this.setState({works});
+  //   components = <NavBar listItem={works} onDelete={this.handleDelete} />;
+  //   this.setState({ components});
+  // }
   handleList = (event) => {
-    event.preventDefault();
+    event && event.preventDefault();
     let {components, works} = this.state;
     components = <NavBar listItem={works} onDelete={this.handleDelete} />;
     this.setState({ components });
   }
   handleDelete =(id) =>{
     console.log("ID:" ,id);
-    let {works} = this.state;
+    let { works } = this.state;
     console.log("APP:",works);
     works.splice(id, 1);
-    this.setState({works});
+  
+    this.setState({works},  this.handleList);
   }
   render() {
     // const store = createStore(myReduce);
