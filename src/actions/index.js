@@ -23,10 +23,10 @@ export const changeModal = (status_modal) =>{
         status_modal
     };
 };
-export const showOneWork = (work) =>{
+export const showOneWork = (work,id) =>{
         return {
             type : types.SHOW_ONE_TASK,
-            work
+            work,id
         }
 
 };

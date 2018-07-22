@@ -19,12 +19,10 @@ var myReducers = (state = initialState, action) => {
         case types.ADD_TASK:
             return [...state, action.works];
         case types.DELETE_TASK:
-        console.log(action);
             return  [...state.slice(0,action.id),...state.slice((action.id + 1))];
         case types.UPDATE_TASK:
+     
             let newState = [...state.slice(0,action.id),action.work ];
-
-            
             return [...newState, ...state.slice(action.id + 1)];
         default:
             return state;
